@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Especial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>¡Estás Invitado/a!</h1>
+    <p>Nos encantaría contar contigo para celebrar este evento especial.</p>
+
+    <!-- Contador -->
+    <div id="countdown">
+      <h2>¡Faltan!</h2>
+      <p id="timer">00 días 00:00:00</p>
+    </div>
+
+    <!-- Imagen del evento -->
+    <img src="evento.jpg" alt="Imagen del evento" class="event-image">
+
+    <!-- Mapa -->
+    <h2>Ubicación del evento</h2>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!..." 
+      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+
+    <!-- Botón con enlace -->
+    <a href="https://confirmacion-de-asistencia.com" class="button">Confirmar Asistencia</a>
+  </div>
+
+  <!-- Reproductor de música -->
+  <audio id="music" autoplay loop>
+    <source src="tu-cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
