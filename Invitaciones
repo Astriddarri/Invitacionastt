@@ -4,38 +4,172 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación Especial</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #ff4081;
+    }
+    .carousel-container {
+      width: 100%;
+      overflow: hidden;
+      margin: 20px auto;
+      position: relative;
+      border-radius: 10px;
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    #countdown {
+      margin: 20px 0;
+      font-size: 24px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    iframe {
+      border: 0;
+      border-radius: 10px;
+      width: 100%;
+      height: 300px;
+    }
+    .quote {
+      font-style: italic;
+      margin: 20px 0;
+      font-size: 20px;
+      color: #555;
+    }
+    .rsvp-form {
+      margin: 20px 0;
+      text-align: left;
+    }
+    .rsvp-form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    .rsvp-form input, .rsvp-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .rsvp-form button {
+      background-color: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>¡Estás Invitado/a!</h1>
     <p>Nos encantaría contar contigo para celebrar este evento especial.</p>
 
-    <!-- Contador -->
+    <!-- Frase especial -->
+    <div class="quote">
+      "La vida es una colección de momentos, y este será inolvidable."
+    </div>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+      <div class="carousel">
+        <img src="evento1.jpg" alt="Imagen 1">
+        <img src="evento2.jpg" alt="Imagen 2">
+        <img src="evento3.jpg" alt="Imagen 3">
+      </div>
+    </div>
+
+    <!-- Contador regresivo -->
     <div id="countdown">
       <h2>¡Faltan!</h2>
       <p id="timer">00 días 00:00:00</p>
     </div>
 
-    <!-- Imagen del evento -->
-    <img src="evento.jpg" alt="Imagen del evento" class="event-image">
-
-    <!-- Mapa -->
+    <!-- Mapa de ubicación -->
     <h2>Ubicación del evento</h2>
     <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!..." 
-      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.1234567890!2d-99.1234567!3d19.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f1234567890%3A0x1234567890abcdef!2sNombre+del+Lugar!5e0!3m2!1ses!2smx!4v1610000000000" 
+      allowfullscreen="" loading="lazy">
     </iframe>
 
-    <!-- Botón con enlace -->
+    <!-- Formulario de confirmación de asistencia -->
+    <div class="rsvp-form">
+      <h2>Confirmar Asistencia</h2>
+      <form action="https://tu-enlace-de-confirmacion.com" method="post">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="attendance">¿Asistirás?</label>
+        <select id="attendance" name="attendance" required>
+          <option value="yes">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <button type="submit">Enviar Confirmación</button>
+      </form>
+    </div>
+
+    <!-- Botón de confirmación -->
     <a href="https://confirmacion-de-asistencia.com" class="button">Confirmar Asistencia</a>
   </div>
 
   <!-- Reproductor de música -->
   <audio id="music" autoplay loop>
     <source src="tu-cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta la reproducción de audio.
   </audio>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <script>
+    // Contador regresivo
+    const countdownDate = new Date("Feb 25, 2025 19:00:00").getTime();
+
+    const timerInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML = `${days} días ${hours}:${minutes}:${seconds}`;
+
+      if (distance < 0) {
+        clearInterval(timerInterval);
+        document.getElementById("timer").innerHTML = "¡El evento ya comenzó!";
+      }
+    }, 1000);
+
+    // Carrusel de imágenes
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel 
+
